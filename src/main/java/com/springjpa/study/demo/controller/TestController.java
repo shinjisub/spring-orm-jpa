@@ -17,11 +17,5 @@ public class TestController {
     @GetMapping("/")
     public void test() {
         List<Member> allList = memberService.findAllList();
-
-        for (Member member : allList) {
-            System.out.println("사용자명 = " + member.getUserName());
-            System.out.println("팀명 = " + member.getTeam().getTeamId());
-            System.out.println("팀명 = " + member.getTeam().getTeamName());
-        }
     }
 }

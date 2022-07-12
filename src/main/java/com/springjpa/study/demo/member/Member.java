@@ -17,18 +17,18 @@ import java.util.Date;
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idx;
+    private long id;
 
     @Column(length = 50)
     private String userName;
 
-    @CreatedDate
-    private Date createDate;
-
-    @LastModifiedDate
-    private Date updateDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "teamId")
     private Team team;
 
+    // 양방향의 경우 Member, Team 쪽 모두 변경해줘야한다.
+    public void setTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }

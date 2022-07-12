@@ -1,11 +1,14 @@
 package com.springjpa.study.demo.team;
 
+import com.springjpa.study.demo.member.Member;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -16,15 +19,12 @@ import java.util.Date;
 public class Team {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long teamId;
+    private long id;
 
     @Column(length = 50)
-    private String teamName;
+    private String name;
 
-    @CreatedDate
-    private Date createDate;
-
-    @LastModifiedDate
-    private Date updateDate;
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>();
 
 }
